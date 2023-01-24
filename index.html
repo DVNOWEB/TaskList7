@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css">
+  <title>Task List Test</title>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div id="main" class="card">
+      <div class="card-content">
+        <span class="card-title">Task List <b>7</b></span>
+        <div class="task-box">
+          <form id="task-form">
+            <div class="input-field">
+              <label for="number_input">Try these seven tasks or choose a number</label>
+              <input type="number" id="number_input">
+            </div>
+            <button class="btn info" id="number_limit">GET 7 NEW External Tasks </button>
+            <div class="input-field">
+              <label for="task">Create your own task on local storage</label>
+              <input type="text" name="task" id="task">
+            </div>
+            <input type="submit" value="Add To Local Storage" class="btn">
+            <button class="btn info btn_local" id="local_todos">Display only local storage</button>
+            <div class="input-field">
+
+              <label for="post-input">Enter data to external storage</label>
+              <input type="text" id="post-input">
+            </div>
+            <button class="btn info" id="post-apis">POST To External Storage</button>
+
+          </form>
+        </div>
+      </div>
+      <div class="card-action">
+        <h5 id="task-title">Tasks</h5>
+        <div class="input-field">
+          <label for="filter">Filter Task</label>
+          <input type="text" name="filter" id="filter">
+        </div>
+        <ul class="collection" id="collection"></ul>
+        <a href="#" class="clear-tasks btn black">Clear All Tasks</a>
+      </div>
+    </div>
+
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <!-- Modal -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>

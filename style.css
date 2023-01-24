@@ -1,0 +1,9 @@
+.completed {
+  text-decoration: line-through;
+  color: green;
+}
+
+b{
+  font-size: 3rem;
+  font-weight: 800;
+}
