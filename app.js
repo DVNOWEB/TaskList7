@@ -259,6 +259,7 @@ function getToDos(numCalls) {
         `;
       });
       document.getElementById('collection').innerHTML = output;
+      number_input.value = ''
     })
     .catch((err) => console.log(err));
 }
