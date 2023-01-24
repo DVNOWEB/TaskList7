@@ -7,3 +7,7 @@ b{
   font-size: 3rem;
   font-weight: 800;
 }
+
+.label_msg.warning {
+  color: red;
+}

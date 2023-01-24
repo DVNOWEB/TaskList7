@@ -5,6 +5,7 @@ const taskList = document.querySelector('.collection');
 const clearBtn = document.querySelector('.clear-tasks');
 const filter = document.querySelector('#filter');
 const taskInput = document.querySelector('#task');
+const localTodos = document.querySelector('#local-todos')
 
 const collection = document.querySelector('.collection');
 
@@ -68,11 +69,48 @@ function getTasks() {
 }
 
 // AddTask Function
+// function addTask(e) {
+//   e.preventDefault()
+//   if (taskInput.value === '') {
+//     return null
+//   }
+//   // Create li element if task added
+//   const li = document.createElement('li');
+//   // Add class name to collection ul
+//   li.className = 'collection-item';
+//   // Create text node append to li
+//   li.appendChild(document.createTextNode(taskInput.value));
+//   // Create new link element delete button
+//   const link = document.createElement('a');
+//   // Add class to link delete button
+//   link.className = 'delete-item secondary-content done';
+//   // Add icon html
+//   link.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+//   // Append the link to li
+//   li.appendChild(link);
+
+//   // Append li to ul (.collection)
+//   taskList.appendChild(li);
+
+//   // Store data in to local storage
+//   storeTaskInLocalStorage(taskInput.value);
+
+//   // Clear input
+//   taskInput.value = '';
+// }
+
 function addTask(e) {
-  e.preventDefault()
+  e.preventDefault();
   if (taskInput.value === '') {
-    // alert('Add a task');
-    return null;
+    // Display warning message
+    document.querySelector('.label_msg').innerText = 'Please enter a task';
+    document.querySelector('.label_msg').classList.add('warning');
+    setTimeout(() => {
+      document.querySelector('.label_msg').innerText =
+        'Create your own task on local storage';
+      document.querySelector('.label_msg').classList.remove('warning');
+    }, 2000);
+    return;
   }
   // Create li element if task added
   const li = document.createElement('li');
@@ -136,10 +174,6 @@ function displayLocalTodos() {
 // Remove task function
 function removeTask(e) {
   if (e.target.parentElement.classList.contains('delete-item')) {
-    // If you wont confirm alert to delete element
-    // if(confirm('Are You Sure?')){
-    // e.target.parentElement.parentElement.remove();
-    // }
     e.target.parentElement.parentElement.remove();
 
     // Remove from the local storage
