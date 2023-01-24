@@ -172,14 +172,37 @@ function displayLocalTodos() {
 
 
 // Remove task function
-function removeTask(e) {
-  if (e.target.parentElement.classList.contains('delete-item')) {
-    e.target.parentElement.parentElement.remove();
+// function removeTask(e) {
+//   if (e.target.parentElement.classList.contains('delete-item')) {
+//     e.target.parentElement.parentElement.remove();
 
-    // Remove from the local storage
+//     // Remove from the local storage
+//     removeTaskFromLocalStorage(e.target.parentElement.parentElement);
+//   }
+// }
+taskList.addEventListener('click', removeTask);
+
+function removeTask(e) {
+  if (e.target.classList.contains('fa-trash-can')) {
+    // Check if task has class "completed"
+    if (!e.target.parentElement.parentElement.classList.contains('completed')) {
+      // Display modal
+      Swal.fire({
+        title: 'Error',
+        text: 'This task is not marked as completed, it cannot be deleted.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      });
+      return;
+    }
+    // Remove task from the list
+    e.target.parentElement.parentElement.remove();
+    // Remove from local storage
     removeTaskFromLocalStorage(e.target.parentElement.parentElement);
   }
 }
+
+
 
 // Remove items from the local storage function
 function removeTaskFromLocalStorage(taskItem) {

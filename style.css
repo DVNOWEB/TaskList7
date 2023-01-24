@@ -8,6 +8,6 @@ b{
   font-weight: 800;
 }
 
-.label_msg.warning {
+.label_msg .warning {
   color: red;
 }
