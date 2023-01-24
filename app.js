@@ -69,21 +69,11 @@ function getTasks() {
 
 // AddTask Function
 function addTask(e) {
-  // if (taskInput.value === '') {
-  //   // alert('Add a task');
-  //   return null;
-  // }
-
+  e.preventDefault()
   if (taskInput.value === '') {
-    Swal.fire({
-      title: 'Error',
-      text: 'Please enter a task!',
-      icon: 'error',
-      confirmButtonText: 'Ok',
-    });
-    return;
+    // alert('Add a task');
+    return null;
   }
-
   // Create li element if task added
   const li = document.createElement('li');
   // Add class name to collection ul
@@ -107,8 +97,6 @@ function addTask(e) {
 
   // Clear input
   taskInput.value = '';
-
-  e.preventDefault();
 }
 
 // Store tasks to the local storage function
