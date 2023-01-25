@@ -71,13 +71,17 @@ function getTasks() {
 function addTask(e) {
   e.preventDefault();
   if (taskInput.value === '') {
-    // Display warning message
+    // Display error message
     document.querySelector('.label_msg').innerText = 'Please enter a task';
-    document.querySelector('.label_msg').classList.add('warning');
+    document.querySelector('.label_msg').style.color = 'red';
+    // or
+    // document.querySelector('.label_msg').classList.add('error');
     setTimeout(() => {
       document.querySelector('.label_msg').innerText =
         'Create your own task on local storage';
-      document.querySelector('.label_msg').classList.remove('warning');
+      document.querySelector('.label_msg').style.color = '#999';
+      // or
+      // document.querySelector('.label_msg').classList.remove('error');
     }, 2000);
     return;
   }
