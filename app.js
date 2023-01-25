@@ -68,37 +68,6 @@ function getTasks() {
   });
 }
 
-// AddTask Function
-// function addTask(e) {
-//   e.preventDefault()
-//   if (taskInput.value === '') {
-//     return null
-//   }
-//   // Create li element if task added
-//   const li = document.createElement('li');
-//   // Add class name to collection ul
-//   li.className = 'collection-item';
-//   // Create text node append to li
-//   li.appendChild(document.createTextNode(taskInput.value));
-//   // Create new link element delete button
-//   const link = document.createElement('a');
-//   // Add class to link delete button
-//   link.className = 'delete-item secondary-content done';
-//   // Add icon html
-//   link.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
-//   // Append the link to li
-//   li.appendChild(link);
-
-//   // Append li to ul (.collection)
-//   taskList.appendChild(li);
-
-//   // Store data in to local storage
-//   storeTaskInLocalStorage(taskInput.value);
-
-//   // Clear input
-//   taskInput.value = '';
-// }
-
 function addTask(e) {
   e.preventDefault();
   if (taskInput.value === '') {
@@ -145,7 +114,6 @@ function storeTaskInLocalStorage(task) {
   } else {
     tasks = JSON.parse(localStorage.getItem('tasks'));
   }
-
   tasks.push(task);
 
   localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -170,18 +138,6 @@ function displayLocalTodos() {
   taskList.innerHTML = output;
 }
 
-
-// Remove task function
-// function removeTask(e) {
-//   if (e.target.parentElement.classList.contains('delete-item')) {
-//     e.target.parentElement.parentElement.remove();
-
-//     // Remove from the local storage
-//     removeTaskFromLocalStorage(e.target.parentElement.parentElement);
-//   }
-// }
-taskList.addEventListener('click', removeTask);
-
 function removeTask(e) {
   if (e.target.classList.contains('fa-trash-can')) {
     // Check if task has class "completed"
@@ -201,8 +157,6 @@ function removeTask(e) {
     removeTaskFromLocalStorage(e.target.parentElement.parentElement);
   }
 }
-
-
 
 // Remove items from the local storage function
 function removeTaskFromLocalStorage(taskItem) {
@@ -224,14 +178,10 @@ function removeTaskFromLocalStorage(taskItem) {
 
 // Clear tasks function
 function clearTasks() {
-  // first way
-  // taskList.innerHTML = ''
-
   // Faster way
   while (taskList.firstChild) {
     taskList.removeChild(taskList.firstChild);
   }
-
   // Clear from the local storage
   clearTasksFromLocalStorage();
 }
@@ -264,10 +214,8 @@ function handleErrors(res) {
 // GET APIs
 function getToDos(numCalls) {
   if (numCalls <= 0) {
-    console.log('Please enter a valid number');
     return;
   }
-  // fetch(`${DATA_URL}?_limit=${numCalls}`)
   fetch(`${DATA_URL}?_limit=${numCalls}`)
     .then((res) => res.json())
     .then((data) => {
@@ -296,6 +244,15 @@ document.getElementById('number_limit').addEventListener('click', (e) => {
 // Post APIs
 function postToDos(e) {
   e.preventDefault();
+  // Check for empty input
+  if (postInput.value === '') {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Input field is empty',
+    });
+    return;
+  }
   // Prepare the data to be sent to the API
   const todo = { title: postInput.value };
   // Use the Fetch API to send a POST request to the API
@@ -314,7 +271,7 @@ function postToDos(e) {
             <i class="fa-solid fa-trash-can"></i>
             </a>
             </li>`;
-            console.log(data);
+      console.log(data);
       // Append the new li element to the taskList
       taskList.innerHTML += li;
       // Clear input
@@ -330,8 +287,7 @@ function markCompleted(e) {
   }
 }
 
-// ToDos not completed
-
+// Show todos that are not completed
 // function getRandomTodos() {
 //   fetch(DATA_URL)
 //     .then((response) => response.json())
@@ -351,7 +307,7 @@ function markCompleted(e) {
 //     .catch((error) => console.log(error));
 // }
 
-// Random ToDos
+// Show Random ToDos completed and uncompleted
 function getRandomTodos() {
   fetch(DATA_URL)
     .then((response) => response.json())
@@ -373,7 +329,6 @@ function getRandomTodos() {
     .catch((error) => console.log(error));
 }
 
-
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -382,7 +337,6 @@ function shuffleArray(array) {
   return array;
 
 }
-
 
 // Modal listener
 taskInput.addEventListener('input', function (e) {
